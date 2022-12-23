@@ -1,3 +1,9 @@
+mod color;
+mod vec3;
+
+use crate::color::*;
+use crate::vec3::*;
+
 fn main() {
     let image_width: i32 = 256;
     let image_height: i32 = 256;
@@ -8,17 +14,25 @@ fn main() {
 
     while j >= 0 {
         for i in 0..image_width {
-            let r: f32 = i as f32 / (image_width - 1) as f32;
-            let g: f32 = j as f32 / (image_height - 1) as f32;
-            let b: f32 = 0.25;
-
-            let ir: i32 = (255.999 * r) as i32;
-            let ig: i32 = (255.999 * g) as i32;
-            let ib: i32 = (255.999 * b) as i32;
-
-            println!("{} {} {}", ir, ig, ib);
+            let pixel_color: Color = Color::new(
+                i as f64 / (image_width - 1) as f64,
+                j as f64 / (image_height - 1) as f64,
+                0.25,
+            );
+            write_color(pixel_color);
         }
 
         j -= 1;
     }
+
+    //let mut v: Vec3 = Vec3::new(1, 2, 3);
+    //let mut u: Vec3 = Vec3::new(1, 2, 3);
+
+    //v.op_add(&mut u);
+
+    //println!(" v is {:#?}", v);
+
+    //let mut x: Vec3 = Vec3::add(&u, &v);
+
+    //println!(" x is {:#?}", x);
 }
